@@ -1,0 +1,2 @@
+// up to date javascript used
+{ "presets": ["@babel/preset-env"] }
