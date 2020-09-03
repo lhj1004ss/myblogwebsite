@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import config from "../config/index";
 const { JWT_SECRET } = config;
-
+// whem login /api/auth
 const auth = (req, res, next) => {
   const token = req.header("x-auth-token");
   if (!token) {
