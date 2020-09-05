@@ -63,7 +63,6 @@ const LoginModal = () => {
       <Modal isOpen={modal} toggle={handleToggle}>
         <ModalHeader toggle={handleToggle}>Login</ModalHeader>
         <ModalBody>
-          {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
             <FormGroup>
               <Label for="email">Email</Label>
@@ -82,7 +81,13 @@ const LoginModal = () => {
                 placeholder="Please type your password"
                 onChange={onChange}
               />
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
+              {localMsg ? (
+                <Alert style={{ margin: "1rem 0" }} color="warning">
+                  {localMsg}
+                </Alert>
+              ) : null}
+
+              <Button color="dark" style={{ marginTop: "1rem" }} block>
                 Login
               </Button>
             </FormGroup>

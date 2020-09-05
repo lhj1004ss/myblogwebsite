@@ -38,53 +38,6 @@ function Navi() {
 
   const addPost = () => {};
 
-  // const authLink = (
-  //   return (
-  //     <div>
-  //       <NavItem>
-  //         {userRole === "Owner" ? (
-  //           <Form className="col mt-2">
-  //             <Link
-  //               to="/post"
-  //               className="btn btn-success block text-dark px-3"
-  //               onClick={addPost}
-  //             >
-  //               Post
-  //             </Link>
-  //           </Form>
-  //         ) : (
-  //           ""
-  //         )}
-  //       </NavItem>
-  //       <NavItem className="d-flex justfy-content-center">
-  //         <Form className="col mt-2">
-  //           {user && user.name ? (
-  //             <Link>
-  //               <Button outline color="light" className="px-3" block>
-  //                 <strong>{user ? `Hello ${user.name}` : ""}</strong>
-  //               </Button>
-  //             </Link>
-  //           ) : (
-  //             <Button outline color="light" className="px-3" block>
-  //               <strong>No User available</strong>
-  //             </Button>
-  //           )}
-  //         </Form>
-  //       </NavItem>
-  //       {/* logout button */}
-  //       <NavItem>
-  //         <Form className="col">
-  //           <Link onClick={onLogout} to="#">
-  //             <Button outline color="light" className="mt-2" block>
-  //               Logout
-  //             </Button>
-  //           </Link>
-  //         </Form>
-  //       </NavItem>
-  //     </div>
-  //   );
-  // );
-
   const authLink = (
     <Fragment>
       <NavItem>
@@ -106,12 +59,12 @@ function Navi() {
         <Form className="col mt-2">
           {user && user.name ? (
             <Link>
-              <Button outline color="light" className="px-3" block>
+              <Button outline color="dark" className="px-3" block>
                 <strong>{user ? `Welcome ${user.name}` : ""}</strong>
               </Button>
             </Link>
           ) : (
-            <Button outline color="light" className="px-3" block>
+            <Button outline color="dark" className="px-3" block>
               <strong>No User</strong>
             </Button>
           )}
@@ -120,7 +73,7 @@ function Navi() {
       <NavItem>
         <Form className="col">
           <Link onClick={onLogout} to="#" className="">
-            <Button outline color="light" className="mt-2" block>
+            <Button outline color="dark" className="mt-2" block>
               Logout
             </Button>
           </Link>

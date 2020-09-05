@@ -48,8 +48,10 @@ function Register() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+
     const { firstname, lastname, email, password } = form;
-    const newUser = { firstname, lastname, password };
+    const newUser = { firstname, lastname, password, email };
+
     console.log("newuser", newUser);
     // send new user to store by using dispatch
     dispatch({
@@ -63,18 +65,7 @@ function Register() {
       <NavLink onClick={handleToggle} href="#">
         Sign-Up
       </NavLink>
-      <Modal
-        style={
-          {
-            // display: "flex",
-            // justifyContent: "center",
-            // alignItems: "center",
-            // textAlign: "center",
-          }
-        }
-        isOpen={modal}
-        toggle={handleToggle}
-      >
+      <Modal isOpen={modal} toggle={handleToggle}>
         <ModalHeader
           style={{
             display: "flex",
@@ -87,58 +78,51 @@ function Register() {
           Sign-Up
         </ModalHeader>
         <ModalBody>
-          {localMsg ? <Alert color="warning">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
             <FormGroup>
-              <Label for="firstname">
-                First Name
-                <Input
-                  style={{ width: "465px" }}
-                  type="text"
-                  name="firstname"
-                  id="firstname"
-                  placeholder="Please type your firstname"
-                  onChange={onChange}
-                />
-              </Label>
+              <Label for="firstname">First Name </Label>
+              <Input
+                type="text"
+                name="firstname"
+                id="firstname"
+                placeholder="Please type your 
+                Firstname"
+                onChange={onChange}
+              />
               <br />
-              <Label for="Lastname">
-                Last Name
-                <Input
-                  style={{ width: "465px" }}
-                  type="text"
-                  name="Lastname"
-                  id="Lastname"
-                  placeholder="Please type your Lastname"
-                  onChange={onChange}
-                />
-              </Label>
+              <Label for="lastname">Last Name </Label>
+              <Input
+                type="text"
+                name="lastname"
+                id="lastname"
+                placeholder="Please type your Lastname"
+                onChange={onChange}
+              />
               <br />
-              <Label for="email">
-                E-mail
-                <Input
-                  style={{ width: "465px" }}
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Please type your E-mail"
-                  onChange={onChange}
-                />
-              </Label>{" "}
+              <Label for="email">E-mail </Label>
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Please type your E-mail"
+                onChange={onChange}
+              />
               <br />
-              <Label for="password">
-                Password
-                <Input
-                  style={{ width: "465px" }}
-                  type="text"
-                  name="password"
-                  id="password"
-                  placeholder="Please type your password"
-                  onChange={onChange}
-                />
-              </Label>
-              <br />
-              <Button color="dark" classname="mt-2" block>
+              <Label for="password">Password </Label>
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Please type your Password"
+                onChange={onChange}
+              />
+              {localMsg ? (
+                <Alert style={{ marginTop: "1rem" }} color="warning">
+                  {localMsg}
+                </Alert>
+              ) : null}
+
+              <Button color="dark" className="mt-2" block>
                 Sign Up
               </Button>
             </FormGroup>
