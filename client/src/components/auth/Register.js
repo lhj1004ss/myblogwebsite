@@ -5,6 +5,7 @@ import {
   NavLink,
   ModalHeader,
   Alert,
+  Modal,
   ModalBody,
   FormGroup,
   Label,
@@ -14,8 +15,8 @@ import {
 } from "reactstrap";
 
 function Register() {
-  const [Modal, setModal] = useState(false);
-  const [Form, setForm] = useState({
+  const [modal, setModal] = useState(false);
+  const [form, setForm] = useState({
     firstname: "",
     lastname: "",
     email: "",
@@ -30,7 +31,7 @@ function Register() {
     dispatch({
       type: CLEAR_ERROR_REQUEST,
     });
-    setModal(!Modal);
+    setModal(!modal);
   };
   useEffect(() => {
     try {
@@ -41,13 +42,13 @@ function Register() {
   }, [errorMsg]);
   const onChange = (e) => {
     setForm({
-      ...Form,
+      ...form,
       [e.target.name]: e.target.value,
     });
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    const { firstname, lastname, email, password } = Form;
+    const { firstname, lastname, email, password } = form;
     const newUser = { firstname, lastname, password };
     console.log("newuser", newUser);
     // send new user to store by using dispatch
@@ -62,8 +63,29 @@ function Register() {
       <NavLink onClick={handleToggle} href="#">
         Sign-Up
       </NavLink>
-      <Modal isOpen={Modal} toggle={handleToggle}>
-        <ModalHeader toggle={handleToggle}>Register</ModalHeader>
+      <Modal
+        style={
+          {
+            // display: "flex",
+            // justifyContent: "center",
+            // alignItems: "center",
+            // textAlign: "center",
+          }
+        }
+        isOpen={modal}
+        toggle={handleToggle}
+      >
+        <ModalHeader
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+          }}
+          toggle={handleToggle}
+        >
+          Sign-Up
+        </ModalHeader>
         <ModalBody>
           {localMsg ? <Alert color="warning">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
@@ -71,6 +93,7 @@ function Register() {
               <Label for="firstname">
                 First Name
                 <Input
+                  style={{ width: "465px" }}
                   type="text"
                   name="firstname"
                   id="firstname"
@@ -78,9 +101,11 @@ function Register() {
                   onChange={onChange}
                 />
               </Label>
+              <br />
               <Label for="Lastname">
                 Last Name
                 <Input
+                  style={{ width: "465px" }}
                   type="text"
                   name="Lastname"
                   id="Lastname"
@@ -88,19 +113,23 @@ function Register() {
                   onChange={onChange}
                 />
               </Label>
+              <br />
               <Label for="email">
                 E-mail
                 <Input
+                  style={{ width: "465px" }}
                   type="email"
                   name="email"
                   id="email"
                   placeholder="Please type your E-mail"
                   onChange={onChange}
                 />
-              </Label>
+              </Label>{" "}
+              <br />
               <Label for="password">
                 Password
                 <Input
+                  style={{ width: "465px" }}
                   type="text"
                   name="password"
                   id="password"
@@ -108,6 +137,7 @@ function Register() {
                   onChange={onChange}
                 />
               </Label>
+              <br />
               <Button color="dark" classname="mt-2" block>
                 Sign Up
               </Button>

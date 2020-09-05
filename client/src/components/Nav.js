@@ -85,7 +85,7 @@ function Navi() {
   //   );
   // );
 
-  const authLink = () => (
+  const authLink = (
     <Fragment>
       <NavItem>
         {userRole === "Owner" ? (
@@ -129,13 +129,13 @@ function Navi() {
     </Fragment>
   );
 
-  const guestLink = () => (
+  const guestLink = (
     <Fragment>
       <NavItem>
-        <Register />
+        <Login />
       </NavItem>
       <NavItem>
-        <Login />
+        <Register />
       </NavItem>
     </Fragment>
   );
