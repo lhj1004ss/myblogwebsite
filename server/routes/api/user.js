@@ -1,8 +1,6 @@
 import express from "express";
 import bcrypt from "bcryptjs";
-
 import jwt from "jsonwebtoken";
-
 import User from "../../models/user";
 import config from "../../config";
 
@@ -22,7 +20,8 @@ router.get("/", async (req, res) => {
     res.status(400).json({ msg: e.message });
   }
 });
-// Post api.user
+// register,signup
+// Post api/user
 router.post("/", (req, res) => {
   console.log(req);
   const { firstname, lastname, email, password } = req.body;

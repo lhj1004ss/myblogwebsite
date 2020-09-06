@@ -34,7 +34,9 @@ mongoose
 
 app.get("/");
 app.use("/api/post", postRoutes);
+// register
 app.use("/api/user", userRoutes);
+// login
 app.use("/api/auth", authRoutes);
 
 export default app;
