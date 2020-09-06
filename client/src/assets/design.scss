@@ -6,3 +6,13 @@
   border-bottom: 2px lightgray solid;
   padding-top: 80px;
 }
+
+#main-body {
+  min-width: 90vh;
+}
+// bootstrap class
+.card-img-top {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
