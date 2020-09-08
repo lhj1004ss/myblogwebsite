@@ -90,6 +90,7 @@ function* loadPostDetail(action) {
       type: POST_DETAIL_LOADING_SUCCESS,
       payload: result.data,
     });
+    yield put(push(`/post/:id`));
   } catch (e) {
     yield put({
       type: POST_DETAIL_LOADING_FAILURE,
