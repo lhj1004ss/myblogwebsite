@@ -34,7 +34,7 @@ const PostSchema = new mongoose.Schema({
       ref: "comment",
     },
   ],
-  creator: {
+  writer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },

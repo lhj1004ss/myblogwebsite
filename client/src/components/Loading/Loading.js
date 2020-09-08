@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Spinner, Row } from "reactstrap";
 
 const Loading = (
-  <div>
+  <Fragment>
     <Row className="d-flex justify-content-center m-5">
       <Spinner style={{ width: "3rem", height: "3rem" }} color="primary" />
       <Spinner style={{ width: "3rem", height: "3rem" }} color="secondary" />
@@ -12,7 +12,7 @@ const Loading = (
       <Spinner style={{ width: "3rem", height: "3rem" }} color="info" />
       <Spinner style={{ width: "3rem", height: "3rem" }} color="dark" />
     </Row>
-  </div>
+  </Fragment>
 );
 
 export default Loading;

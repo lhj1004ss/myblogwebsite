@@ -11,7 +11,9 @@ import dotenv from "dotenv";
 import multerS3 from "multer-s3";
 import path from "path";
 import AWS from "aws-sdk";
+import moment from "moment";
 import { isNullOrUndefined } from "util";
+
 dotenv.config();
 
 const s3 = new AWS.S3({
@@ -36,18 +38,14 @@ const uploadS3 = multer({
 // create post, api/post/image
 // private
 
-router.post("/image", uploadS3.array("upload,5"), async (req, res, next) => {
+router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {
   try {
-    console.log(req.files.map((img) => img.location));
-
-    res.json({
-      uploaded: true,
-      // map here is to show img when uploaded before actually posting
-      url: req.files.map((img) => img.location),
-    });
+    console.log(req.files.map((v) => v.location));
+    // map here is to show img when uploaded before actually posting
+    res.json({ uploaded: true, url: req.files.map((v) => v.location) });
   } catch (e) {
     console.error(e);
-    res.json({ upload: false, url: null });
+    res.json({ uploaded: false, url: null });
   }
 });
 
@@ -57,6 +55,10 @@ router.get("/", async (req, res) => {
   res.json(postFindResult);
 });
 
+//   post api/post
+//  create a Post
+// private
+
 router.post("/", auth, uploadS3.none(), async (req, res, next) => {
   try {
     console.log(req, "req");
@@ -65,16 +67,16 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
       title,
       contents,
       fileUrl,
-      writer,
+      writer: req.user.id,
       date: moment().format("MM-DD-YYYY hh:mm:ss"),
     });
+
     const findResult = await Category.findOne({
-      // categoryname from category model
       categoryName: category,
     });
 
-    console.log("findresult(category)", findResult);
-    ////if no category when post, make new category
+    console.log(findResult, "Find Result!!!!");
+    //     ////if no category when post, make new category
     if (isNullOrUndefined(findResult)) {
       const newCategory = await Category.create({
         categoryName: category,
@@ -91,17 +93,19 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
         },
       });
     } else {
-      // category exists
       await Category.findByIdAndUpdate(findResult._id, {
         $push: { posts: newPost._id },
       });
-      await Post.findByIdAndUpdate(newPost._id, { category: findResult._id });
+      await Post.findByIdAndUpdate(newPost._id, {
+        category: findResult._id,
+      });
       await User.findByIdAndUpdate(req.user.id, {
-        $push: { posts: newPost._id },
+        $push: {
+          posts: newPost._id,
+        },
       });
     }
     return res.redirect(`/api/post/${newPost._id}`);
-    res.json(newPost);
   } catch (e) {
     console.log(e);
   }
@@ -113,12 +117,12 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const post = await (await Post.findById(req.params.id))
-      .populate("writer", "firstname", "lastname")
+    const post = await Post.findById(req.params.id)
+      .populate("writer", "firstname")
       .populate({ path: "category", select: "categoryName" });
   } catch (e) {
     console.error(e);
-    next();
+    next(e);
   }
 });
 
