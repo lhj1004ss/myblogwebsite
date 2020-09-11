@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import store from "../../store";
 import { USER_LOADING_REQUEST } from "../../redux/types";
 const LoadUser = () => {

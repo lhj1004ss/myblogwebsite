@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: moment().format("MM-DD-YYYY hh:mm:ss"),
   },
-  comment: [
+  comments: [
     {
       post_id: { type: mongoose.Schema.Types.ObjectId, ref: "posts" },
     },

@@ -21,7 +21,7 @@ function Router() {
           <Route path="/post" exact component={PostWrite} />
           <Route path="/post/:id" exact component={PostDetail} />
           <Route
-            path="/posts/category/:categoryName"
+            path="/post/category/:categoryName"
             exact
             component={CategoryResult}
           />

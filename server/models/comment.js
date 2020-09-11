@@ -15,11 +15,11 @@ const CommentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "post",
   },
-  creator: {
+  writer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
-  creatorName: { type: String },
+  writerName: { type: String },
 });
 
 const Comment = mongoose.model("comment", CommentSchema);
