@@ -54,7 +54,7 @@ const PostDetail = (req) => {
       <Row className="d-flex justify-content-center pb-3">
         <Col className="col-md-3 mr-md-3">
           <Link
-            to={`/post/${req.match.params.id}}`}
+            to={`/post/${req.match.params.id}/edit}`}
             className="btn btn-dark btn-block"
           >
             Edit

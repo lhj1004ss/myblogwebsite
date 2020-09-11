@@ -2,9 +2,7 @@ import express from "express";
 import Post from "../../models/post";
 import Category from "../../models/category";
 import Comment from "../../models/comment";
-
 import User from "../../models/user";
-
 import auth from "../../middleware/auth";
 const router = express.Router();
 // /api/post
@@ -120,8 +118,9 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id)
-      .populate("writer", "firstname")
+      .populate("writer")
       .populate({ path: "category", select: "categoryName" });
+    post.save();
     res.json(post);
   } catch (e) {
     console.error(e);

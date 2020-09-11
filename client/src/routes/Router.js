@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import { Container } from "reactstrap";
@@ -12,7 +12,7 @@ import Search from "./publicRoute/Search";
 
 function Router() {
   return (
-    <div>
+    <Fragment>
       <Nav />
       <Header />
       <Container id="main-body">
@@ -32,7 +32,7 @@ function Router() {
         </Switch>
       </Container>
       <Footer />
-    </div>
+    </Fragment>
   );
 }
 

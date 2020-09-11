@@ -13,8 +13,9 @@ import axios from "axios";
 import { call, put, takeEvery, all, fork } from "redux-saga/effects";
 import { push } from "connected-react-router";
 
+//upload post
 const loadPostAPI = (payload) => {
-  return axios.get(`/api/post/`);
+  return axios.get(`/api/post`);
 };
 
 function* loadPosts(action) {
@@ -90,7 +91,6 @@ function* loadPostDetail(action) {
       type: POST_DETAIL_LOADING_SUCCESS,
       payload: result.data,
     });
-    yield put(push(`/post/:id`));
   } catch (e) {
     yield put({
       type: POST_DETAIL_LOADING_FAILURE,
