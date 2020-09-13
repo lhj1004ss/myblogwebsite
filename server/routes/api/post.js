@@ -173,4 +173,73 @@ router.post("/:id/comments", async (req, res, next) => {
   }
 });
 
+// delete post
+// api/post/:id
+
+router.delete("/:id", auth, async (req, res) => {
+  await Post.deleteMany({ _id: req.params.id });
+  await Comment.deleteMany({ post: req.params.id });
+  await User.findByIdAndUpdate(req.user.id, {
+    $pull: {
+      posts: req.params.id,
+      comments: { post_id: req.params.id },
+    },
+  });
+
+  // delete category
+  const CategoryUpdateResult = await Category.findOneAndUpdate(
+    { posts: req.params.id },
+    { $pull: { posts: req.params.id } },
+    { new: true }
+  );
+  // if no post, delete all category
+  if (CategoryUpdateResult.posts.length === 0) {
+    await Category.deleteMany({ _id: CategoryUpdateResult });
+  }
+  return res.json({ success: true });
+});
+
+// get api/post/:id/edit
+// edit post
+
+router.get("/:id/edit", auth, async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.params.id).populate(
+      "writer",
+      "firstname"
+    );
+    res.json(post);
+  } catch (e) {
+    console.error(e);
+  }
+});
+
+router.post("/:id/edit", auth, async (req, res, next) => {
+  // const { title, contents, fileUrl, id } = req.body;
+
+  const {
+    body: { title, contents, fileUrl, id },
+  } = req;
+
+  console.log(req);
+  try {
+    const modifiedPost = await Post.findByIdAndUpdate(
+      id,
+      {
+        title,
+        contents,
+        fileUrl,
+        date: moment().format("MM-DD-YYYY hh:mm:ss"),
+      },
+      { new: true }
+    );
+    console.log("modifiedPost", modifiedPost);
+    // res.redirect(`/api/post/${modifiedPost.id}`);
+    res.status(200).redirect(`/api/post/${modifiedPost.id}`);
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+});
+
 export default router;

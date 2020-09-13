@@ -40,6 +40,7 @@ const PostDetail = (req) => {
   }, [dispatch]);
 
   const onDeletePostClick = () => {
+    console.log("clicked");
     dispatch({
       type: POST_DELETE_REQUEST,
       payload: {
@@ -54,15 +55,15 @@ const PostDetail = (req) => {
       <Row className="d-flex justify-content-center pb-3">
         <Col className="col-md-3 mr-md-3">
           <Link
-            to={`/post/${req.match.params.id}/edit}`}
+            to={`/post/${req.match.params.id}/edit`}
             className="btn btn-dark btn-block"
           >
-            Edit
+            Edit Post
           </Link>
         </Col>
         <Col className="col-md-3">
           <Button className="btn-block btn-dark" onClick={onDeletePostClick}>
-            Delete
+            Delete Post
           </Button>
         </Col>
       </Row>

@@ -15,6 +15,9 @@ const Comments = ({ id, userId, userName }) => {
     await e.preventDefault();
     const { contents } = form;
     const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please Login to leave comments");
+    }
     const body = {
       contents,
       token,

@@ -9,6 +9,8 @@ import PostDetail from "./publicRoute/PostDetail";
 import CategoryResult from "./publicRoute/CategoryResult";
 import PostWrite from "./publicRoute/PostWrite";
 import Search from "./publicRoute/Search";
+import { EditProtectedRoute } from "./protectedRoute/ProtectedRoute";
+import PostEdit from "./publicRoute/PostEdit";
 
 function Router() {
   return (
@@ -26,6 +28,11 @@ function Router() {
             component={CategoryResult}
           />
           <Route path="/search/:searchTerm" exact component={Search} />
+          <EditProtectedRoute
+            path="/post/:id/edit"
+            exact
+            component={PostEdit}
+          />
 
           {/* any other weird address except for above, redirect to home */}
           <Redirect from="*" to="/" />
