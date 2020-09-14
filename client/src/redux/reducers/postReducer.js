@@ -17,6 +17,9 @@ import {
   POST_EDIT_UPLOADING_FAILURE,
   POST_EDIT_UPLOADING_SUCCESS,
   POST_EDIT_UPLOADING_REQUEST,
+  SEARCH_FAILURE,
+  SEARCH_REQUEST,
+  SEARCH_SUCCESS,
 } from "../types";
 
 const initialState = {
@@ -143,6 +146,27 @@ export default function (state = initialState, action) {
       return {
         ...state,
         error: action.payload,
+        loading: false,
+      };
+
+    case SEARCH_REQUEST:
+      return {
+        ...state,
+        posts: [],
+        searchBy: action.payload,
+        loading: true,
+      };
+    case SEARCH_SUCCESS:
+      return {
+        ...state,
+        searchResult: action.payload,
+        loading: false,
+      };
+    case SEARCH_FAILURE:
+      return {
+        ...state,
+        searchBy: action.payload,
+        searchResult: action.payload,
         loading: false,
       };
     default:

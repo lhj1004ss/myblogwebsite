@@ -17,6 +17,9 @@ import {
   POST_EDIT_UPLOADING_REQUEST,
   POST_EDIT_UPLOADING_SUCCESS,
   POST_EDIT_UPLOADING_FAILURE,
+  SEARCH_REQUEST,
+  SEARCH_FAILURE,
+  SEARCH_SUCCESS,
 } from "../types";
 import axios from "axios";
 import { call, put, takeEvery, all, fork } from "redux-saga/effects";
@@ -221,6 +224,34 @@ function* postEditUpload(action) {
 function* watchpostEditUpload() {
   yield takeEvery(POST_EDIT_UPLOADING_REQUEST, postEditUpload);
 }
+
+//search
+
+const searchResultAPI = (payload) => {
+  return axios.get(`/api/search/${encodeURIComponent(payload)}`);
+};
+
+function* searchResult(action) {
+  try {
+    const result = yield call(searchResultAPI, action.payload);
+    yield put({
+      type: SEARCH_SUCCESS,
+      payload: result.data,
+    });
+    yield put(push(`/search/${encodeURIComponent(action.payload)}`));
+  } catch (e) {
+    yield put({
+      type: SEARCH_FAILURE,
+      payload: e,
+    });
+    yield put(push("/"));
+  }
+}
+
+function* watchsearchResult() {
+  yield takeEvery(SEARCH_REQUEST, searchResult);
+}
+
 export default function* postSaga() {
   yield all([
     fork(watchLoadPosts),
@@ -229,5 +260,6 @@ export default function* postSaga() {
     fork(watchdeletePost),
     fork(watchpostEditLoad),
     fork(watchpostEditUpload),
+    fork(watchsearchResult),
   ]);
 }

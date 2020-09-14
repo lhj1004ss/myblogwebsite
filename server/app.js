@@ -4,6 +4,7 @@ import config from "./config";
 import postRoutes from "./routes/api/post";
 import userRoutes from "./routes/api/user";
 import authRoutes from "./routes/api/auth";
+import searchRoutes from "./routes/api/search";
 
 import hpp from "hpp";
 import helmet from "helmet";
@@ -39,5 +40,7 @@ app.use("/api/post", postRoutes);
 app.use("/api/user", userRoutes);
 // login
 app.use("/api/auth", authRoutes);
+//search
+app.use("/api/search", searchRoutes);
 
 export default app;

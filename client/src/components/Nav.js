@@ -14,6 +14,7 @@ import Login from "../components/auth/login";
 import { useSelector, useDispatch } from "react-redux";
 import { LOGOUT_REQUEST } from "../redux/types";
 import Register from "../components/auth/Register";
+import SearchBar from "./Search/SearchBar";
 
 function Navi() {
   const [isOpen, setIsOpen] = useState(false);
@@ -102,6 +103,7 @@ function Navi() {
           </Link>
           <NavbarToggler onClick={handleToggle} />
           <Collapse isOpen={isOpen} navbar>
+            <SearchBar isOpen={isOpen} />
             <Nav className="ml-auto d-felx justify-content-around" navbar>
               {isAuth ? authLink : guestLink}
             </Nav>
