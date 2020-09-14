@@ -25,7 +25,7 @@ const uploadS3 = multer({
   storage: multerS3({
     s3,
     bucket: "myblogimg/upload",
-    region: "canada",
+    // region: "canada",
     key(req, file, cb) {
       const ext = path.extname(file.originalname);
       const basename = path.basename(file.originalname, ext);
@@ -49,6 +49,7 @@ router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {
   }
 });
 
+//get all post
 router.get("/", async (req, res) => {
   const postFindResult = await Post.find();
   console.log(postFindResult, "all post");
