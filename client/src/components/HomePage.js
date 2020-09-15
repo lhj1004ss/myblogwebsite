@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { Link, animateScroll as scroll } from "react-scroll";
-
+import Service from "./Service";
+import { Row } from "reactstrap";
 function HomePage() {
   return (
     <Fragment>
-      <div className="homePage">
+      <Row className="homePage">
         <Link
           activeClass="active"
           to="service"
@@ -18,7 +19,8 @@ function HomePage() {
             <FaArrowAltCircleDown />
           </span>
         </Link>
-      </div>
+      </Row>
+      <Service />
     </Fragment>
   );
 }

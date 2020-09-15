@@ -109,7 +109,7 @@ router.post("/:userFirstName/profile", auth, async (req, res) => {
           });
         } else {
           res
-            .status(400)
+            .status(400)``
             .json({ fail_msg: "New passwords does not match each other" });
         }
       }
