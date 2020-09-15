@@ -42,19 +42,19 @@ function Navi() {
   const authLink = (
     <Fragment>
       <NavItem>
-        {userRole === "Owner" ? (
-          <Form className="col mt-2">
-            <Link
-              className="text-decoration-none font-weight-bold text-dark"
-              to="/post"
-              onClick={addPost}
-            >
-              Add Post
-            </Link>
-          </Form>
-        ) : (
-          ""
-        )}
+        {/* {userRole === "Owner" ? ( */}
+        <Form className="col mt-2">
+          <Link
+            className="text-decoration-none font-weight-bold text-dark"
+            to="/post"
+            onClick={addPost}
+          >
+            Upload
+          </Link>
+        </Form>
+        {/* ) : (
+          "disabled"
+        )} */}
       </NavItem>
       <NavItem color="faded" light>
         <Form className="col mt-2">
@@ -108,12 +108,10 @@ function Navi() {
           className="mt-2 mr-2 text-decoration-none text-dark font-weight-bold"
           color="faded"
           light
-          color="dark"
         >
           <Link
             light
             className=" text-decoration-none font-weight-bold text-dark"
-            light
             to="/blog"
           >
             Blog

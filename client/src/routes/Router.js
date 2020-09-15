@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import Nav from "../components/Nav";
-import Header from "../components/Header";
 import { Container } from "reactstrap";
 import Footer from "../components/Footer";
 import { Switch, Route, Redirect } from "react-router-dom";

@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { FaArrowAltCircleDown } from "react-icons/fa";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import Service from "./Service";
 import About from "./About";
 import { Row } from "reactstrap";
 function HomePage() {
   return (
-    <Fragment className="tex">
-      <Row className="homePage text-center">
+    <Fragment>
+      <Row className="homePage">
         <div
           style={{
             margin: "0 auto",
@@ -27,7 +27,7 @@ function HomePage() {
         <Link
           activeClass="active"
           to="service"
-          spy="true"
+          spy={true}
           smooth={true}
           offset={-60}
           duration={800}
@@ -38,6 +38,7 @@ function HomePage() {
         </Link>
       </Row>
       <Service />
+      <About />
     </Fragment>
   );
 }
