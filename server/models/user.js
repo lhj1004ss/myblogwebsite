@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ["Owner", "Manager", "User"],
-    default: "User",
+    default: "Owner",
   },
   register_date: {
     type: Date,

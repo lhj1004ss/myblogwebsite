@@ -6,8 +6,24 @@ import About from "./About";
 import { Row } from "reactstrap";
 function HomePage() {
   return (
-    <Fragment>
-      <Row className="homePage">
+    <Fragment className="tex">
+      <Row className="homePage text-center">
+        <div
+          style={{
+            margin: "0 auto",
+            marginTop: "18rem",
+          }}
+        >
+          <h1
+            style={{
+              color: "white",
+              fontSize: "4rem",
+            }}
+          >
+            Welcome To Hyoje Blog
+          </h1>
+        </div>
+
         <Link
           activeClass="active"
           to="service"
