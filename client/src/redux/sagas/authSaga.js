@@ -15,7 +15,11 @@ import {
   REGISTER_REQUEST,
   CLEAR_ERROR_SUCCESS,
   CLEAR_ERROR_REQUEST,
+  PROFILE_EDIT_UPLOADING_SUCCESS,
+  PROFILE_EDIT_UPLOADING_FAILURE,
+  PROFILE_EDIT_UPLOADING_REQUEST,
 } from "../types";
+import { push } from "connected-react-router";
 
 // login
 
@@ -65,7 +69,6 @@ function* watchLogout() {
 }
 
 // register
-
 const registerUserAPI = (register) => {
   console.log("register", register);
 
@@ -145,6 +148,47 @@ function* watchclearError() {
   yield takeEvery(CLEAR_ERROR_REQUEST, clearError);
 }
 
+//profile change
+
+const editProfileAPI = (payload) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const token = payload.token;
+
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+  return axios.post(
+    `/api/user/${payload.userFirstName}/profile`,
+    payload,
+    config
+  );
+};
+
+function* editProfile(action) {
+  try {
+    console.log(action, "editProfile");
+    const result = yield call(editProfileAPI, action.payload);
+    yield put({
+      type: PROFILE_EDIT_UPLOADING_SUCCESS,
+      payload: result,
+    });
+    yield put(push("/"));
+  } catch (e) {
+    yield put({
+      type: PROFILE_EDIT_UPLOADING_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+function* watcheditProfile() {
+  yield takeEvery(PROFILE_EDIT_UPLOADING_REQUEST, editProfile);
+}
+
 export default function* authSaga() {
   yield all([
     fork(watchLoginUser),
@@ -152,5 +196,6 @@ export default function* authSaga() {
     fork(watchuserLoading),
     fork(watchregisterUser),
     fork(watchclearError),
+    fork(watcheditProfile),
   ]);
 }

@@ -45,8 +45,8 @@ function Navi() {
         {userRole === "Owner" ? (
           <Form className="col mt-2">
             <Link
+              className="text-decoration-none font-weight-bold text-dark"
               to="/post"
-              className="btn btn-success block text-white px-3"
               onClick={addPost}
             >
               Add Post
@@ -56,39 +56,76 @@ function Navi() {
           ""
         )}
       </NavItem>
+      <NavItem color="faded" light>
+        <Form className="col mt-2">
+          <Link
+            className="text-decoration-none font-weight-bold text-dark"
+            to="/blog"
+          >
+            Blog
+          </Link>
+        </Form>
+      </NavItem>
       <NavItem className="d-flex justify-content-center">
         <Form className="col mt-2">
-          {user && user.name ? (
-            <Link>
-              <Button outline color="dark" className="px-3" block>
-                <strong>{user ? `Welcome ${user.name}` : ""}</strong>
-              </Button>
+          {user && user.firstname ? (
+            <Link
+              to={`/user/${user.firstname}/profile`}
+              className="text-decoration-none font-weight-bold text-dark"
+            >
+              {user ? `Hello, ${user.firstname}` : ""}
             </Link>
           ) : (
-            <Button outline color="dark" className="px-3" block>
+            <Button
+              outline
+              color="dark"
+              className="px-3 text-decoration-none"
+              block
+            >
               <strong>No User</strong>
             </Button>
           )}
         </Form>
       </NavItem>
       <NavItem>
-        <Form className="col">
-          <Link onClick={onLogout} to="#" className="">
-            <Button outline color="dark" className="mt-2" block>
-              Logout
-            </Button>
+        <Form className="col mt-2">
+          <Link
+            onClick={onLogout}
+            to="#"
+            className="text-decoration-none font-weight-bold text-dark"
+          >
+            Logout
           </Link>
         </Form>
       </NavItem>
     </Fragment>
   );
-
+  //className="text-decoration-none text-dark font-weight-bold"
   const guestLink = (
     <Fragment>
-      <NavItem>
-        <Login />
-      </NavItem>
-      <NavItem>
+      <Form>
+        <NavItem
+          className="mt-2 mr-2 text-decoration-none text-dark font-weight-bold"
+          color="faded"
+          light
+          color="dark"
+        >
+          <Link
+            light
+            className=" text-decoration-none font-weight-bold text-dark"
+            light
+            to="/blog"
+          >
+            Blog
+          </Link>
+        </NavItem>
+      </Form>
+      <Form>
+        <NavItem className=" text-decoration-none font-weight-bold text-dark">
+          <Login className="text-dark" />
+        </NavItem>
+      </Form>
+      <NavItem className=" text-decoration-none text-dark font-weight-bold">
         <Register />
       </NavItem>
     </Fragment>
@@ -96,10 +133,13 @@ function Navi() {
 
   return (
     <div>
-      <Navbar expand="lg" className="sticky-top">
+      <Navbar light expand="lg" className="sticky-top " navbar>
         <Container>
-          <Link to="/" className=" text-decoration-none text-dark">
-            Hyoje's Web Blog
+          <Link
+            to="/"
+            className=" text-decoration-none text-dark font-weight mt-2"
+          >
+            <strong>Hyoje Blog</strong>
           </Link>
           <NavbarToggler onClick={handleToggle} />
           <Collapse isOpen={isOpen} navbar>

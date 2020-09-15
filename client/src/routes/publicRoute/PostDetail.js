@@ -84,7 +84,7 @@ const PostDetail = (req) => {
 
   const Body = (
     <>
-      <Row className="border-bottom border-top border-dark p-3 mb-3 d-flex justify-content-between">
+      <Row className="mt-5 border-bottom border-top border-dark p-3 mb-3 d-flex justify-content-between">
         {(() => {
           if (postDetail && postDetail.writer) {
             return (

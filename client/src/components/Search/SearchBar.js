@@ -38,12 +38,6 @@ const SearchBar = () => {
   return (
     <Fragment>
       <Form onSubmit={onSubmit} className="col mt-2">
-        {/* <Input
-          name="searchBy"
-          onChange={onChange}
-          innerRef={resetValue}
-        ></Input> */}
-
         <InputGroup>
           <Input
             name="searchBy"

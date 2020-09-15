@@ -62,7 +62,7 @@ function Register() {
 
   return (
     <div>
-      <NavLink onClick={handleToggle} href="#">
+      <NavLink className="text-dark" onClick={handleToggle} href="#">
         Sign-Up
       </NavLink>
       <Modal isOpen={modal} toggle={handleToggle}>

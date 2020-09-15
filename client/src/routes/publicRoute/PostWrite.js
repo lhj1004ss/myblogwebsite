@@ -92,7 +92,7 @@ const PostWrite = () => {
   return (
     <div>
       {isAuth ? (
-        <Form onSubmit={onSubmit}>
+        <Form className="mt-5" onSubmit={onSubmit}>
           <FormGroup className="mb-3">
             <Label for="title">Title</Label>
             <Input

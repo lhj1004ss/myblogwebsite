@@ -28,3 +28,29 @@ export const EditProtectedRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
+
+export const ProfileProtectedRoute = ({ component: Component, ...rest }) => {
+  const { userFirstName } = useSelector((state) => state.auth);
+  console.log(userFirstName);
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        if (props.match.params.userFirstName === userFirstName) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
+};

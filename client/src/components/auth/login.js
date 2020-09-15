@@ -57,7 +57,7 @@ const LoginModal = () => {
   };
   return (
     <div>
-      <NavLink onClick={handleToggle} href="#">
+      <NavLink className="text-dark" onClick={handleToggle} href="#">
         Login
       </NavLink>
       <Modal isOpen={modal} toggle={handleToggle}>

@@ -5,7 +5,7 @@ import { Row } from "reactstrap";
 import { Helmet } from "react-helmet";
 import Loading from "../../components/Loading/Loading";
 import PostCard from "../../components/PostCard/PostCard";
-
+import Header from "../../components/Header";
 const PostCardList = () => {
   // post because I wrote post from index.js in reducers
   // posts from postReducerfile
@@ -18,7 +18,8 @@ const PostCardList = () => {
 
   return (
     <div>
-      <Helmet title="Home" />
+      <Helmet title="Blog" />
+      <Header />
       <Row>{posts ? <PostCard posts={posts} /> : Loading}</Row>
     </div>
   );

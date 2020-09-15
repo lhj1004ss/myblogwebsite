@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../../models/user";
 import config from "../../config";
+import auth from "../../middleware/auth";
 
 const { JWT_SECRET } = config;
 
@@ -79,6 +80,43 @@ router.post("/", (req, res) => {
       });
     });
   });
+});
+
+// post /api/user/:userFirstName/profile
+// edit profile
+router.post("/:userFirstName/profile", auth, async (req, res) => {
+  try {
+    const { previousPassword, password, matchPassword, userId } = req.body;
+    console.log(" Profile", req.body);
+    const result = await User.findById(userId, "password");
+
+    bcrypt.compare(previousPassword, result.password).then((isMatch) => {
+      if (!isMatch) {
+        return res.status(400).json({
+          match_msg: "It does not match current password",
+        });
+      } else {
+        if (password === matchPassword) {
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(password, salt, (err, hash) => {
+              if (err) throw err;
+              result.password = hash;
+              result.save();
+            });
+          });
+          res.status(200).json({
+            success_msg: "you have successfully updated your password",
+          });
+        } else {
+          res
+            .status(400)
+            .json({ fail_msg: "New passwords does not match each other" });
+        }
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 export default router;

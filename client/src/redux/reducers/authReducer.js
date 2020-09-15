@@ -14,6 +14,9 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+  PROFILE_EDIT_UPLOADING_REQUEST,
+  PROFILE_EDIT_UPLOADING_SUCCESS,
+  PROFILE_EDIT_UPLOADING_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -27,6 +30,7 @@ const initialState = {
   userRole: "",
   errorMsg: "",
   successMsg: "",
+  previousMsg: "",
 };
 
 const authReducer = (state = initialState, action) => {
@@ -80,22 +84,6 @@ const authReducer = (state = initialState, action) => {
         userRole: null,
         erroMsg: "",
       };
-
-    case CLEAR_ERROR_REQUEST:
-      return {
-        ...state,
-        errorMsg: null,
-      };
-    case CLEAR_ERROR_SUCCESS:
-      return {
-        ...state,
-        errorMsg: null,
-      };
-    case CLEAR_ERROR_FAILURE:
-      return {
-        ...state,
-        errorMsg: null,
-      };
     case USER_LOADING_REQUEST:
       return {
         ...state,
@@ -119,6 +107,81 @@ const authReducer = (state = initialState, action) => {
         isAuth: false,
         isLoading: false,
         userRole: "",
+      };
+
+    // case PROFILE_EDIT_UPLOADING_REQUEST:
+    //   return {
+    //     ...state,
+    //     isLoading: true,
+    //   };
+    // case PROFILE_EDIT_UPLOADING_SUCCESS:
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     successMsg: action.payload.data.success_msg,
+    //     errorMsg: "",
+    //     previousMsg: "",
+    //   };
+    // case PROFILE_EDIT_UPLOADING_FAILURE:
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     successMsg: "",
+    //     errorMsg: action.payload.fail_msg,
+    //     previousMsg: action.payload.match_msg,
+    //   };
+    // case CLEAR_ERROR_REQUEST:
+    //   return {
+    //     ...state,
+    //   };
+    // case CLEAR_ERROR_SUCCESS:
+    //   return {
+    //     ...state,
+    //     errorMsg: "",
+    //     previousMsg: "",
+    //   };
+    // case CLEAR_ERROR_FAILURE:
+    //   return {
+    //     ...state,
+    //     errorMsg: "clear error failed",
+    //     previousMsg: "clear error failed",
+    //   };
+    case PROFILE_EDIT_UPLOADING_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case PROFILE_EDIT_UPLOADING_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        successMsg: action.payload.data.success_msg,
+        errorMsg: "",
+        previousMsg: "",
+      };
+    case PROFILE_EDIT_UPLOADING_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        successMsg: "",
+        errorMsg: action.payload.data.fail_msg,
+        previousMsg: action.payload.data.match_msg,
+      };
+    case CLEAR_ERROR_REQUEST:
+      return {
+        ...state,
+      };
+    case CLEAR_ERROR_SUCCESS:
+      return {
+        ...state,
+        errorMsg: "",
+        previousMsg: "",
+      };
+    case CLEAR_ERROR_FAILURE:
+      return {
+        ...state,
+        errorMsg: "Clear Error Fail",
+        previousMsg: "Clear Error Fail",
       };
     default:
       return state;
