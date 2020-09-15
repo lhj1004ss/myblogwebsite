@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { Link, animateScroll as scroll } from "react-scroll";
+
 function HomePage() {
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="homePage">
         <Link
           activeClass="active"
@@ -18,7 +19,7 @@ function HomePage() {
           </span>
         </Link>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 }
 

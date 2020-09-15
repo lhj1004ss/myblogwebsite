@@ -133,7 +133,13 @@ function Navi() {
 
   return (
     <div>
-      <Navbar light expand="lg" className="sticky-top " navbar>
+      <Navbar
+        fixed="top"
+        light
+        expand="lg"
+        className="sticky-top mb-2 navber"
+        navbar
+      >
         <Container>
           <Link
             to="/"
