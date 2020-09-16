@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Row } from "reactstrap";
@@ -16,9 +16,11 @@ const Search = () => {
       dispatch({ type: SEARCH_REQUEST, payload: searchTerm });
     }
   }, [dispatch, searchTerm]);
+
   return (
     <div>
-      {/* <h1>Search Res`ult:{searchTerm} </h1> */}
+      <h3 className="mb-5">Search : {searchTerm} </h3>
+
       <Row>
         <PostCard posts={searchResult} />
       </Row>

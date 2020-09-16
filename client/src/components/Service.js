@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import { AiOutlineCloudUpload, AiOutlineComment } from "react-icons/ai";
 import { ImProfile } from "react-icons/im";
-import { Row, Col, Container } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 export default class ServicePage extends Component {
   state = {

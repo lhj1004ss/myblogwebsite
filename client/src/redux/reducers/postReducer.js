@@ -28,6 +28,7 @@ const initialState = {
   posts: [],
   postDetail: "",
   postCount: "",
+  postFindResult: "",
   error: "",
   loading: false,
   writerId: "",
@@ -42,13 +43,13 @@ export default function (state = initialState, action) {
     case POSTS_LOADING_REQUEST:
       return {
         ...state,
-        loading: true,
         posts: [],
+        loading: true,
       };
     case POSTS_LOADING_SUCCESS:
       return {
         ...state,
-        posts: [...state.posts, ...action.payload],
+        posts: [...state.posts, ...action.payload.postFindResult],
         loading: false,
       };
     case POSTS_LOADING_FAILURE:
@@ -159,13 +160,13 @@ export default function (state = initialState, action) {
     case SEARCH_SUCCESS:
       return {
         ...state,
+        searchBy: action.payload,
         searchResult: action.payload,
         loading: false,
       };
     case SEARCH_FAILURE:
       return {
         ...state,
-        searchBy: action.payload,
         searchResult: action.payload,
         loading: false,
       };

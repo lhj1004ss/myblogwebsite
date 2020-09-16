@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import Login from "../components/auth/login";
 import { useSelector, useDispatch } from "react-redux";
-import { LOGOUT_REQUEST } from "../redux/types";
+import { LOGOUT_REQUEST, POSTS_WRITE_REQUEST } from "../redux/types";
 import Register from "../components/auth/Register";
 import SearchBar from "./Search/SearchBar";
 
@@ -37,7 +37,11 @@ function Navi() {
     setIsOpen(!isOpen);
   };
 
-  const addPost = () => {};
+  const addPost = () => {
+    dispatch({
+      type: POSTS_WRITE_REQUEST,
+    });
+  };
 
   const authLink = (
     <Fragment>

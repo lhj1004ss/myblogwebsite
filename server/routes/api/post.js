@@ -49,11 +49,17 @@ router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {
   }
 });
 
+// add infinite scroll,  /skip/:skip/
 //get all post
 router.get("/", async (req, res) => {
-  const postFindResult = await Post.find();
-  console.log(postFindResult, "all post");
-  res.json(postFindResult);
+  try {
+    const postFindResult = await Post.find();
+    const result = { postFindResult };
+    res.json(result);
+  } catch (e) {
+    console.log(e);
+    res.json({ msg: "There is no more post available" });
+  }
 });
 
 //   post api/post
@@ -236,8 +242,7 @@ router.post("/:id/edit", auth, async (req, res, next) => {
       { new: true }
     );
     console.log("modifiedPost", modifiedPost);
-    // res.redirect(`/api/post/${modifiedPost.id}`);
-    res.status(200).redirect(`/api/post/${modifiedPost.id}`);
+    redirect(`/api/post/${modifiedPost.id}`);
   } catch (e) {
     console.log(e);
     next(e);

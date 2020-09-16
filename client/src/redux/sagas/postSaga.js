@@ -26,13 +26,13 @@ import { call, put, takeEvery, all, fork } from "redux-saga/effects";
 import { push } from "connected-react-router";
 
 //upload post
-const loadPostAPI = (payload) => {
+const loadPostAPI = () => {
   return axios.get(`/api/post`);
 };
 
 function* loadPosts(action) {
   try {
-    const result = yield call(loadPostAPI, action.payload);
+    const result = yield call(loadPostAPI);
     console.log(result, "loadPosts");
     yield put({
       type: POSTS_LOADING_SUCCESS,
@@ -140,7 +140,7 @@ function* deletePost(action) {
       type: POST_DELETE_SUCCESS,
       payload: result.data,
     });
-    yield put(push("/"));
+    yield put(push("/blog"));
   } catch (e) {
     yield put({
       type: POST_DELETE_FAILURE,
@@ -166,7 +166,7 @@ const postEditLoadAPI = (payload) => {
     config.headers["x-auth-token"] = token;
   }
 
-  return axios.get(`/api/post/${payload.id}/edit`, config);
+  return axios.get(`/api/post/${payload.id}/edit`, payload, config);
 };
 
 function* postEditLoad(action) {
@@ -176,6 +176,7 @@ function* postEditLoad(action) {
       type: POST_EDIT_LOADING_SUCCESS,
       payload: result.data,
     });
+    put(push("/"));
   } catch (e) {
     yield put({
       type: POST_EDIT_LOADING_FAILURE,
@@ -212,12 +213,13 @@ function* postEditUpload(action) {
       type: POST_EDIT_UPLOADING_SUCCESS,
       payload: result.data,
     });
+    yield put(push(`/post/${result.data._id}`));
   } catch (e) {
     yield put({
       type: POST_EDIT_UPLOADING_FAILURE,
       payload: e,
     });
-    yield put(push("/"));
+    yield put(push("/blog"));
   }
 }
 

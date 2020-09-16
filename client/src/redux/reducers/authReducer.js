@@ -42,8 +42,10 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_REQUEST:
       return {
         ...state,
+        posts: [],
+
         errorMsg: "",
-        isLoading: "true",
+        isLoading: true,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
@@ -88,6 +90,7 @@ const authReducer = (state = initialState, action) => {
     case USER_LOADING_REQUEST:
       return {
         ...state,
+        posts: [],
         isLoading: true,
       };
     case USER_LOADING_SUCCESS:
@@ -112,6 +115,7 @@ const authReducer = (state = initialState, action) => {
     case PROFILE_EDIT_UPLOADING_REQUEST:
       return {
         ...state,
+        posts: [],
         isLoading: true,
       };
     case PROFILE_EDIT_UPLOADING_SUCCESS:

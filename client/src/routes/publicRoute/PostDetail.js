@@ -177,7 +177,7 @@ const PostDetail = (req) => {
 
   return (
     <div>
-      <Helmet title={`Post|${title}`} />
+      <Helmet title={`Post | ${title}`} />
       {loading === true ? Loading : Body}
     </div>
   );

@@ -6,6 +6,7 @@ router.get("/:searchTerm", async (req, res, next) => {
   try {
     const result = await Post.find({
       title: { $regex: req.params.searchTerm, $options: "i" },
+      contents: { $regex: req.params.searchTerm, $options: "i" },
     });
 
     console.log("search result", result);
