@@ -25,7 +25,7 @@ const uploadS3 = multer({
   storage: multerS3({
     s3,
     bucket: "myblogimg/upload",
-    // region: "canada",
+    region: "ca-central-1",
     key(req, file, cb) {
       const ext = path.extname(file.originalname);
       const basename = path.basename(file.originalname, ext);
