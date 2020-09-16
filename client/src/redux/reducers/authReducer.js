@@ -31,6 +31,7 @@ const initialState = {
   errorMsg: "",
   successMsg: "",
   previousMsg: "",
+  shortMsg: "",
 };
 
 const authReducer = (state = initialState, action) => {
@@ -108,44 +109,6 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
         userRole: "",
       };
-
-    // case PROFILE_EDIT_UPLOADING_REQUEST:
-    //   return {
-    //     ...state,
-    //     isLoading: true,
-    //   };
-    // case PROFILE_EDIT_UPLOADING_SUCCESS:
-    //   return {
-    //     ...state,
-    //     isLoading: false,
-    //     successMsg: action.payload.data.success_msg,
-    //     errorMsg: "",
-    //     previousMsg: "",
-    //   };
-    // case PROFILE_EDIT_UPLOADING_FAILURE:
-    //   return {
-    //     ...state,
-    //     isLoading: false,
-    //     successMsg: "",
-    //     errorMsg: action.payload.fail_msg,
-    //     previousMsg: action.payload.match_msg,
-    //   };
-    // case CLEAR_ERROR_REQUEST:
-    //   return {
-    //     ...state,
-    //   };
-    // case CLEAR_ERROR_SUCCESS:
-    //   return {
-    //     ...state,
-    //     errorMsg: "",
-    //     previousMsg: "",
-    //   };
-    // case CLEAR_ERROR_FAILURE:
-    //   return {
-    //     ...state,
-    //     errorMsg: "clear error failed",
-    //     previousMsg: "clear error failed",
-    //   };
     case PROFILE_EDIT_UPLOADING_REQUEST:
       return {
         ...state,
@@ -164,6 +127,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         successMsg: "",
+        shortMsg: action.payload.data.short_msg,
         errorMsg: action.payload.data.fail_msg,
         previousMsg: action.payload.data.match_msg,
       };

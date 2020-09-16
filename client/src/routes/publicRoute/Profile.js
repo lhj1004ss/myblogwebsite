@@ -20,7 +20,7 @@ import {
 } from "../../redux/types";
 
 const Profile = () => {
-  const { userId, errorMsg, successMsg, previousMsg } = useSelector(
+  const { userId, errorMsg, successMsg, previousMsg, shortMsg } = useSelector(
     (state) => state.auth
   );
   const { userFirstName } = useParams();
@@ -99,6 +99,7 @@ const Profile = () => {
                   className="form-control mb-2"
                   onChange={onChange}
                 />
+                {shortMsg ? <Alert color="warning">{shortMsg}</Alert> : ""}
                 {errorMsg ? <Alert color="warning">{errorMsg}</Alert> : ""}
                 {previousMsg ? (
                   <Alert color="warning">{previousMsg}</Alert>
@@ -107,13 +108,7 @@ const Profile = () => {
                 )}
                 {successMsg ? <Alert color="primary">{successMsg}</Alert> : ""}
               </FormGroup>
-              <Button
-                color="dark"
-                block
-                className="mt-4 mb-4 
-              
-                "
-              >
+              <Button color="dark" block className="mt-4 mb-4">
                 Submit
               </Button>
             </Form>

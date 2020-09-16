@@ -91,6 +91,13 @@ router.post("/:userFirstName/profile", auth, async (req, res) => {
     const result = await User.findById(userId, "password");
 
     bcrypt.compare(previousPassword, result.password).then((isMatch) => {
+      if (password.length <= 7) {
+        return res
+          .status(400)
+          .json({
+            short_msg: "Your New Password must be at least 8 character ",
+          });
+      }
       if (!isMatch) {
         return res.status(400).json({
           match_msg: "It does not match current password",
@@ -105,12 +112,12 @@ router.post("/:userFirstName/profile", auth, async (req, res) => {
             });
           });
           res.status(200).json({
-            success_msg: "you have successfully updated your password",
+            success_msg: "You have successfully updated your password",
           });
         } else {
-          res
-            .status(400)``
-            .json({ fail_msg: "New passwords does not match each other" });
+          res.status(400)``.json({
+            fail_msg: "New passwords does not match each other",
+          });
         }
       }
     });
