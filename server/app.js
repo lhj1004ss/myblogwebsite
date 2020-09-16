@@ -5,11 +5,13 @@ import postRoutes from "./routes/api/post";
 import userRoutes from "./routes/api/user";
 import authRoutes from "./routes/api/auth";
 import searchRoutes from "./routes/api/search";
-
 import hpp from "hpp";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
+import path from "path";
+
+const prod = process.env.NODE_ENV === "production";
 
 const app = express();
 const { MONGO_URI } = config;
@@ -42,5 +44,13 @@ app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 //search
 app.use("/api/search", searchRoutes);
+
+if (prod) {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+  // get all address "*"
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  });
+}
 
 export default app;
