@@ -25,7 +25,6 @@ function Register() {
   const [localMsg, setlocalMsg] = useState("");
   //auth from index file in reducer
   const { errorMsg } = useSelector((state) => state.auth);
-  const [IsOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const handleToggle = () => {
     dispatch({

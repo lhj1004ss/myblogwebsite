@@ -53,7 +53,7 @@ function* watchLoginUser() {
 }
 // logout
 
-function* logout(loginAction) {
+function* logout() {
   try {
     yield put({
       type: LOGOUT_SUCCESS,

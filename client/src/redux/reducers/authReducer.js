@@ -42,8 +42,6 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_REQUEST:
       return {
         ...state,
-        posts: [],
-
         errorMsg: "",
         isLoading: true,
       };
@@ -90,7 +88,6 @@ const authReducer = (state = initialState, action) => {
     case USER_LOADING_REQUEST:
       return {
         ...state,
-        posts: [],
         isLoading: true,
       };
     case USER_LOADING_SUCCESS:

@@ -1,7 +1,7 @@
-import React, { useEffect, useCallback, useRef } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { POSTS_LOADING_REQUEST } from "../../redux/types";
-import { Row, Alert, Button } from "reactstrap";
+import { Row } from "reactstrap";
 import { Helmet } from "react-helmet";
 import Loading from "../../components/Loading/Loading";
 import PostCard from "../../components/PostCard/PostCard";
