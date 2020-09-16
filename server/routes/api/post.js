@@ -13,6 +13,7 @@ import path from "path";
 import AWS from "aws-sdk";
 import moment from "moment";
 import { isNullOrUndefined } from "util";
+import "@babel/polyfill";
 
 dotenv.config();
 
