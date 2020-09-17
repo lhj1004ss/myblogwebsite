@@ -22,6 +22,7 @@ const HomePage = () => {
             >
               <h1
                 style={{
+                  textAlign: "center",
                   color: "white",
                   fontSize: "4rem",
                 }}

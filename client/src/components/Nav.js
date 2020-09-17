@@ -46,6 +46,16 @@ function Navi() {
   const authLink = (
     <Fragment>
       <NavItem>
+        <Form className="col mt-2">
+          <Link
+            className="text-decoration-none font-weight-bold text-dark"
+            to="/"
+          >
+            Home
+          </Link>
+        </Form>
+      </NavItem>
+      <NavItem>
         {/* {userRole === "Owner" ? ( */}
         <Form className="col mt-2">
           <Link
@@ -60,7 +70,7 @@ function Navi() {
           "disabled"
         )} */}
       </NavItem>
-      <NavItem color="faded" light>
+      <NavItem color="faded">
         <Form className="col mt-2">
           <Link
             className="text-decoration-none font-weight-bold text-dark"
@@ -107,14 +117,22 @@ function Navi() {
   //className="text-decoration-none text-dark font-weight-bold"
   const guestLink = (
     <Fragment>
+      <NavItem>
+        <Form className="col mt-2">
+          <Link
+            className="text-decoration-none font-weight-bold text-dark"
+            to="/"
+          >
+            Home
+          </Link>
+        </Form>
+      </NavItem>
       <Form>
         <NavItem
           className="mt-2 mr-2 text-decoration-none text-dark font-weight-bold"
           color="faded"
-          light
         >
           <Link
-            light
             className=" text-decoration-none font-weight-bold text-dark"
             to="/blog"
           >
@@ -136,11 +154,10 @@ function Navi() {
   return (
     <div>
       <Navbar
-        fixed="top"
-        light
         expand="lg"
+        color="faded"
+        light
         className="sticky-top mb-2 navber"
-        navbar
       >
         <Container>
           <Link
@@ -149,7 +166,7 @@ function Navi() {
           >
             <strong>Hyoje Blog</strong>
           </Link>
-          <NavbarToggler onClick={handleToggle} />
+          <NavbarToggler color="dark" onClick={handleToggle} />
           <Collapse isOpen={isOpen} navbar>
             <SearchBar isOpen={isOpen} />
             <Nav className="ml-auto d-felx justify-content-around" navbar>

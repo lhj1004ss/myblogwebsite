@@ -1,36 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { FaSignInAlt } from "react-icons/fa";
-import { AiOutlineCloudUpload, AiOutlineComment } from "react-icons/ai";
+import { FaSignInAlt, FaComments } from "react-icons/fa";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 import { ImProfile } from "react-icons/im";
 import { Row, Col } from "reactstrap";
 
 export default class ServicePage extends Component {
-  state = {
-    service: [
-      {
-        icon: <AiOutlineCloudUpload />,
-        title: "Upload Post",
-        detail: "Share Your Idea With Others",
-      },
-
-      {
-        icon: <FaSignInAlt />,
-        title: "Sign-In & Sign-Up",
-        detail: "Be Part of a Member To Do More",
-      },
-      {
-        icon: <AiOutlineComment />,
-        title: "Comments",
-        detail: "Leave Comments",
-      },
-      {
-        icon: <ImProfile />,
-        title: "Profile Change",
-        detail: "Change Your Profile",
-      },
-    ],
-  };
-
   render() {
     return (
       <Fragment>
@@ -57,23 +31,54 @@ export default class ServicePage extends Component {
               className="d-flex align-items-center justify-content-center "
               style={{ margin: "0 auto" }}
             >
-              {this.state.service.map((item, index) => {
-                return (
-                  <Col
-                    key={index}
-                    style={{
-                      margin: "0 auto",
-                      textAlign: "center",
-                    }}
-                  >
-                    <div style={{ textAlign: "center", alignItems: "center" }}>
-                      <span style={{ fontSize: "2rem" }}>{item.icon}</span>
-                      <h3 style={{ marginTop: "2rem" }}>{item.title}</h3>
-                      <p>{item.detail}</p>
-                    </div>
-                  </Col>
-                );
-              })}
+              <Col
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                }}
+              >
+                <span style={{ fontSize: "3rem" }}>
+                  <AiOutlineCloudUpload />
+                </span>
+                <h3>Upload Post</h3>
+                <p>Share Your Idea With Others</p>
+              </Col>{" "}
+              <Col
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                }}
+              >
+                <span style={{ fontSize: "3rem" }}>
+                  <FaSignInAlt />
+                </span>
+                <h3>Sign-In & Sign-Up</h3>
+                <p>Share Your Idea With Others</p>
+              </Col>{" "}
+              <Col
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                }}
+              >
+                <span style={{ fontSize: "3rem" }}>
+                  <FaComments />
+                </span>
+                <h3>Comments</h3>
+                <p>Leave Comments</p>
+              </Col>{" "}
+              <Col
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                }}
+              >
+                <span style={{ fontSize: "3rem" }}>
+                  <ImProfile />
+                </span>
+                <h3>Profile Change</h3>
+                <p>Change Your Profile</p>
+              </Col>
             </Row>
           </div>
         </div>

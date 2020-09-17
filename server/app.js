@@ -17,7 +17,12 @@ const app = express();
 const { MONGO_URI } = config;
 
 app.use(hpp());
-app.use(helmet());
+// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 
 app.use(cors({ origin: true, credentials: true }));
 

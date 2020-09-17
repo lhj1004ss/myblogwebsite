@@ -19,7 +19,9 @@ function Router() {
   return (
     <Fragment>
       <Nav />
-      <Route path="/" exact component={HomePage} />
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+      </Switch>
 
       <Container id="main-body">
         <Switch>
