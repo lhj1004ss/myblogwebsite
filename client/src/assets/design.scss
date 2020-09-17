@@ -83,10 +83,16 @@
   .about {
     min-height: 38vh;
   }
+  .about-header {
+    padding-top: 2rem;
+  }
 }
 @media all and (max-width: 580px) {
   .about {
-    min-height: 80vh;
+    min-height: 85vh;
+  }
+  .about-header {
+    padding-top: 2rem;
   }
 }
 

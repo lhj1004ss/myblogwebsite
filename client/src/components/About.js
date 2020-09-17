@@ -3,8 +3,11 @@ import { Row, Col, Container } from "reactstrap";
 
 function About() {
   return (
-    <Container style={{ margin: "0 auto" }} className="about">
-      <h1 className="text-center mt-4 mb-5">About Me</h1>
+    <Container
+      style={{ margin: "0 auto", marginBottom: "2rem" }}
+      className="about"
+    >
+      <h1 className="text-center mt-4 mb-5 about-header">About Me</h1>
       <hr />
       <Row xs="1" sm="2" md="2">
         <Col className="mt-5">
