@@ -4,9 +4,9 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGOUT_FAILURE,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
+  // LOGOUT_FAILURE,
+  // LOGOUT_REQUEST,
+  // LOGOUT_SUCCESS,
   USER_LOADING_SUCCESS,
   USER_LOADING_FAILURE,
   USER_LOADING_REQUEST,
@@ -53,20 +53,20 @@ function* watchLoginUser() {
 }
 // logout
 
-function* logout() {
-  try {
-    yield put({
-      type: LOGOUT_SUCCESS,
-    });
-  } catch (e) {
-    yield put({
-      type: LOGOUT_FAILURE,
-    });
-  }
-}
-function* watchLogout() {
-  yield takeEvery(LOGOUT_REQUEST, loginUser);
-}
+// function* logout() {
+//   try {
+//     yield put({
+//       type: LOGOUT_SUCCESS,
+//     });
+//   } catch (e) {
+//     yield put({
+//       type: LOGOUT_FAILURE,
+//     });
+//   }
+// }
+// function* watchLogout() {
+//   yield takeEvery(LOGOUT_REQUEST, loginUser);
+// }
 
 // register
 const registerUserAPI = (register) => {
@@ -192,7 +192,7 @@ function* watcheditProfile() {
 export default function* authSaga() {
   yield all([
     fork(watchLoginUser),
-    fork(watchLogout),
+    // fork(watchLogout),
     fork(watchuserLoading),
     fork(watchregisterUser),
     fork(watchclearError),

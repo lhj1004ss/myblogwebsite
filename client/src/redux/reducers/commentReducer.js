@@ -45,7 +45,7 @@ const commentReducer = (state = initialState, action) => {
         loading: false,
       };
     case COMMENT_UPLOADING_FAILURE:
-    case COMMENT_LOADING_FAILURE:
+      // case COMMENT_LOADING_FAILURE:
       return {
         ...state,
         loading: false,
